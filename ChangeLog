@@ -1,0 +1,9 @@
+2010-12-18  Thomas Krennwallner  <tkren@kr.tuwien.ac.at>
+
+	* m4/boost.m4: SVN copy from dlvhex/trunk.
+	* m4/doxygen.m4: Likewise.
+	* bootstrap.sh: Likewise.
+	* doxygen.am: Likewise.
+	* doxygen.cfg: Likewise.
+
+
