@@ -1,3 +1,8 @@
+2011-05-30  Thomas Krennwallner  <tkren@kr.tuwien.ac.at>
+
+	* m4/boost.m4: Sync with newest version of boost.m4 from
+	<https://github.com/tsuna/boost.m4>.
+
 2010-12-18  Thomas Krennwallner  <tkren@kr.tuwien.ac.at>
 
 	* m4/boost.m4: Sync with newest version of boost.m4 from
