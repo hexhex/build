@@ -1,5 +1,7 @@
 2011-06-13  Thomas Krennwallner  <tkren@kr.tuwien.ac.at>
 
+	* README: Add documentation.
+
 	* bootstrap.sh: autoreconf implicitly calls libtoolize.
 
 	* m4/boost.m4: Sync with rpath_bug branch

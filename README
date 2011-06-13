@@ -1,0 +1,39 @@
+# -*- org -*-
+#+STARTUP: showall
+
+This directory contains basic files for building dlvhex and plugins.
+
+To use this in your plugin, invoke
+
+ $ cd /path/to/your/svn/branch/
+ $ svn propedit svn:externals .
+
+and add the following lines into the editor:
+
+^/dlvhex-build/trunk/bootstrap.sh bootstrap.sh
+^/dlvhex-build/trunk/doxygen.am doxygen.am
+^/dlvhex-build/trunk/doxygen.cfg doxygen.cfg
+^/dlvhex-build/trunk/m4/boost.m4 m4/boost.m4
+^/dlvhex-build/trunk/m4/doxygen.m4 m4/doxygen.m4
+
+Then, commit using
+
+ $ svn ci -m "Use dlvhex-build."
+
+and update your working directory as usual:
+
+ $ svn up
+
+If you get a warning like
+
+svn: warning: The file external from 'https://dlvhex.svn.sourceforge.net/svnroot/dlvhex/dlvhex-build/trunk/bootstrap.sh' cannot overwrite the existing versioned item at 'bootstrap.sh'
+
+then simply remove all pre-existing files using
+
+ $ svn rm XXX ; svn ci -m "Remove."
+
+and run
+
+ $ svn up
+
+again.
