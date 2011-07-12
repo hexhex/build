@@ -4,7 +4,6 @@
 # brief documentation of this script
 #
 # relevant environment variables:
-# TOP_BUILDDIR (as in automake)
 # TOP_SRCDIR (as in automake)
 #
 # derived values: 
@@ -63,8 +62,7 @@ ntests=0
 
 echo ============ dlvhex tests start ============
 
-DLVHEX="${TOPBUILDDIR}/src/dlvhex/dlvhex -s --plugindir=${TOPBUILDDIR}/testsuite/"
-TESTDIR="${TOPSRCDIR}/examples/tests/"
+TESTDIR="${TOP_SRCDIR}/examples/tests/"
 
 for t in $(find ${TESTDIR} -name '*.test' -type f)
 do
@@ -142,7 +140,7 @@ do
         $DLVHEX $ADDPARM $HEXPROGRAM 2>$ETMPFILE >$TMPFILE
         RETVAL=$?
         if [ $RETVAL -eq 0 ]; then
-          if $TOPSRCDIR/testsuite/answerset_compare.py $TMPFILE $ANSWERSETSFILE; then
+          if $TOP_SRCDIR/testsuite/answerset_compare.py $TMPFILE $ANSWERSETSFILE; then
               echo "PASS: $HEXPROGRAM $ADDPARM"
           else
               echo "FAIL: $DLVHEX $ADDPARM $HEXPROGRAM (answersets differ)"
