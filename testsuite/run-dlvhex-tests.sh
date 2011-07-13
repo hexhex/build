@@ -5,6 +5,7 @@
 #
 # relevant environment variables:
 # TOP_SRCDIR (as in automake)
+# DLVHEX (binary to use as dlvhex, may include commandline parameters)
 #
 # derived values: 
 # TESTDIR="$TOP_SRCDIR/examples/tests"
@@ -51,6 +52,9 @@
 # Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301
 # USA.
 #
+
+test "x${DLVHEX}" != "x" || { echo "need DLVHEX variable to be set!"; exit -1; }
+test "x${TOP_SRCDIR}" != "x" || { echo "need TOP_SRCDIR variable to be set!"; exit -1; }
 
 MKTEMP="mktemp -t tmp.XXXXXXXXXX"
 TMPFILE=$($MKTEMP) # global temp. file for answer sets
