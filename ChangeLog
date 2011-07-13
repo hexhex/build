@@ -1,3 +1,9 @@
+2011-07-13  Peter Schueller  <ps@kr.tuwien.ac.at>
+
+	* testsuite/answerset_compare.py: Added common answer set comparison
+	script for writing testsuites.
+	* testsuite/run-dlvhex-tests.sh: Added common HEX execution tests.
+
 2011-06-13  Thomas Krennwallner  <tkren@kr.tuwien.ac.at>
 
 	* README: Add documentation.
