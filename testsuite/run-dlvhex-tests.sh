@@ -55,6 +55,8 @@
 
 test "x${DLVHEX}" != "x" || { echo "need DLVHEX variable to be set!"; exit -1; }
 test "x${TOP_SRCDIR}" != "x" || { echo "need TOP_SRCDIR variable to be set!"; exit -1; }
+test "x${EXAMPLESDIR}" != "x" || { echo "need EXAMPLESDIR variable to be set!"; exit -1; }
+test "x${TESTDIR}" != "x" || { echo "need TESTDIR variable to be set!"; exit -1; }
 
 MKTEMP="mktemp -t tmp.XXXXXXXXXX"
 TMPFILE=$($MKTEMP) # global temp. file for answer sets
@@ -66,8 +68,6 @@ ntests=0
 
 echo ============ dlvhex tests start ============
 
-TESTDIR="${TOP_SRCDIR}/examples/tests/"
-
 for t in $(find ${TESTDIR} -name '*.test' -type f)
 do
   # "read" assigns first word to first variable,
@@ -78,7 +78,7 @@ do
     let ntests++
 
     # check if we have the input file
-    HEXPROGRAM=$TESTDIR/$HEXPROGRAM
+    HEXPROGRAM=$EXAMPLESDIR/$HEXPROGRAM
     if [ ! -f $HEXPROGRAM ]; then
         echo FAIL: Could not find program file $HEXPROGRAM
         let failed++
