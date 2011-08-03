@@ -6,6 +6,8 @@
 # relevant environment variables:
 # TOP_SRCDIR (as in automake)
 # DLVHEX (binary to use as dlvhex, may include commandline parameters)
+# EXAMPLESDIR (directory where hex input files are located)
+# TESTDIR (directory where .test files and .out/.stdout/.stderr files are located)
 #
 # derived values: 
 # TESTDIR="$TOP_SRCDIR/examples/tests"

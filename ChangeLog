@@ -1,3 +1,7 @@
+2011-08-03  Peter Schueller  <ps@kr.tuwien.ac.at>
+
+	* testsuite/run-dlvhex-tests.sh: More documentation.
+
 2011-08-03  Thomas Krennwallner  <tkren@kr.tuwien.ac.at>
 
 	* testsuite/run-dlvhex-tests.sh (TESTDIR): Assume that TESTDIR and
