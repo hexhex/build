@@ -78,8 +78,6 @@ do
   while read HEXPROGRAM VERIFICATIONFILE ADDPARM
   do
     let ntests++
-	
-	exec ls
 
     # check if we have the input file
     HEXPROGRAM=$EXAMPLESDIR/$HEXPROGRAM
