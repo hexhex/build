@@ -143,7 +143,7 @@ do
         fi
 
         # run dlvhex with specified parameters and program
-        $DLVHEX $ADDPARM $HEXPROGRAM 2>$ETMPFILE >$TMPFILE
+        $DLVHEX $ADDPARM $HEXPROGRAM >$TMPFILE
         RETVAL=$?
         if [ $RETVAL -eq 0 ]; then
           if $TOP_SRCDIR/testsuite/answerset_compare.py $TMPFILE $ANSWERSETSFILE; then
