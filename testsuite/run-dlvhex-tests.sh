@@ -80,7 +80,9 @@ do
     let ntests++
 
     # check if we have the input file
-    HEXPROGRAM=$EXAMPLESDIR/$HEXPROGRAM
+    if test ${HEXPROGRAM:0:1} != "/"; then
+        HEXPROGRAM=$EXAMPLESDIR/$HEXPROGRAM
+    fi
     if [ ! -f $HEXPROGRAM ]; then
         echo FAIL: Could not find program file $HEXPROGRAM
         let failed++
@@ -92,7 +94,11 @@ do
     if test "x$VERIFICATIONEXT" == "x.stderr" -o "x$VERIFICATIONEXT" == "x.stdout"; then
       #echo "negative testcase"
 
-      ERRORFILE=$TESTDIR/$VERIFICATIONFILE
+      if test ${VERIFICATIONFILE:0:1} == "/"; then
+          ERRORFILE=$VERIFICATIONFILE
+      else
+          ERRORFILE=$TESTDIR/$VERIFICATIONFILE
+      fi
       if [ ! -f $ERRORFILE ]; then
           echo "FAIL: $HEXPROGRAM: could not find verification file $ERRORFILE"
           let failed++
@@ -134,8 +140,12 @@ do
       VERIFICATIONEXT=${VERIFICATIONFILE: -4}
       if test "x$VERIFICATIONEXT" == "x.out"; then
         #echo "model-verifying testcase"
-
-        ANSWERSETSFILE=$TESTDIR/$VERIFICATIONFILE
+        
+        if test ${VERIFICATIONFILE:0:1} == "/"; then
+            ANSWERSETSFILE=$VERIFICATIONFILE
+        else
+            ANSWERSETSFILE=$TESTDIR/$VERIFICATIONFILE
+        fi
         if [ ! -f $ANSWERSETSFILE ]; then
             echo "FAIL: $HEXPROGRAM: could not find answer set file $ANSWERSETSFILE"
             let failed++
