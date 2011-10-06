@@ -183,6 +183,7 @@ rm -f $ETMPFILE
 
 echo ========== dlvhex tests completed ==========
 
+echo Time: $SECONDS seconds
 echo Tested $ntests dlvhex programs
 echo $failed failed tests, $warned warnings
 
