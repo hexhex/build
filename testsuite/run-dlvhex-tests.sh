@@ -59,6 +59,9 @@ test "x${DLVHEX}" != "x" || { echo "need DLVHEX variable to be set!"; exit -1; }
 test "x${TOP_SRCDIR}" != "x" || { echo "need TOP_SRCDIR variable to be set!"; exit -1; }
 test "x${EXAMPLESDIR}" != "x" || { echo "need EXAMPLESDIR variable to be set!"; exit -1; }
 test "x${TESTDIR}" != "x" || { echo "need TESTDIR variable to be set!"; exit -1; }
+if test "x${OUTDIR}" == "x"; then
+   OUTDIR = ${TESTDIR}
+fi
 
 MKTEMP="mktemp -t tmp.XXXXXXXXXX"
 TMPFILE=$($MKTEMP) # global temp. file for answer sets
@@ -144,7 +147,7 @@ do
         if test ${VERIFICATIONFILE:0:1} == "/"; then
             ANSWERSETSFILE=$VERIFICATIONFILE
         else
-            ANSWERSETSFILE=$TESTDIR/$VERIFICATIONFILE
+            ANSWERSETSFILE=$OUTDIR/$VERIFICATIONFILE
         fi
         if [ ! -f $ANSWERSETSFILE ]; then
             echo "FAIL: $HEXPROGRAM: could not find answer set file $ANSWERSETSFILE"
