@@ -60,7 +60,7 @@ test "x${TOP_SRCDIR}" != "x" || { echo "need TOP_SRCDIR variable to be set!"; ex
 test "x${EXAMPLESDIR}" != "x" || { echo "need EXAMPLESDIR variable to be set!"; exit -1; }
 test "x${TESTDIR}" != "x" || { echo "need TESTDIR variable to be set!"; exit -1; }
 if test "x${OUTDIR}" == "x"; then
-   OUTDIR = ${TESTDIR}
+   OUTDIR=${TESTDIR}
 fi
 
 MKTEMP="mktemp -t tmp.XXXXXXXXXX"
