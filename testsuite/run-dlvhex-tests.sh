@@ -168,10 +168,9 @@ do
         else
           echo "FAIL: $DLVHEX $ADDPARM $HEXPROGRAM (abnormal termination)"
           let failed++
-          grep -v "^$" $ETMPFILE
         fi
       else
-        echo "FAIL: $DLVHEX $ADDPARM $HEXPROGRAM: type of testcase must be '.out', '.stdout', or '.stderr', got '$VERIFCATIONEXT'"
+        echo "FAIL: $DLVHEX $ADDPARM $HEXPROGRAM: type of testcase must be '.out', '.stdout', or '.stderr', got '$VERIFICATIONEXT'"
         let failed++
         continue
       fi
