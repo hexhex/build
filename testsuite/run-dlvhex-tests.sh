@@ -80,6 +80,12 @@ do
   # and all remaining words to the last variable
   while read HEXPROGRAM VERIFICATIONFILE ADDPARM
   do
+    # skip comment lines
+    COMMENTMARKER=${HEXPROGRAM:0:1}
+    if test x"${COMMENTMARKER}" == x"#"; then
+      continue
+    fi
+
     let ntests++
 
     # check if we have the input file
