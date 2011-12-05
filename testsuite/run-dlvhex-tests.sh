@@ -106,7 +106,7 @@ do
       if test ${VERIFICATIONFILE:0:1} == "/"; then
           ERRORFILE=$VERIFICATIONFILE
       else
-          ERRORFILE=$TESTDIR/$VERIFICATIONFILE
+          ERRORFILE=$OUTDIR/$VERIFICATIONFILE
       fi
       if [ ! -f $ERRORFILE ]; then
           echo "FAIL: $HEXPROGRAM: could not find verification file $ERRORFILE"
