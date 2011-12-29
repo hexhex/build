@@ -7,10 +7,8 @@
 # TOP_SRCDIR (as in automake)
 # DLVHEX (binary to use as dlvhex, may include commandline parameters)
 # EXAMPLESDIR (directory where hex input files are located)
-# TESTDIR (directory where .test files and .out/.stdout/.stderr files are located)
-#
-# derived values: 
-# TESTDIR="$TOP_SRCDIR/examples/tests"
+# TESTDIR (directory where .test files are located)
+# OUTDIR (directory where .out/.stdout/.stderr files are located)
 #
 # this script looks for files called "*.test" in $TESTDIR
 # each line in such a file is parsed:
@@ -71,7 +69,8 @@ failed=0
 warned=0
 ntests=0
 
-echo ============ dlvhex tests start ============
+echo "============ dlvhex tests start ============"
+echo "(executing in directory " $(pwd) ")"
 
 for t in $(find ${TESTDIR} -name '*.test' -type f)
 do
