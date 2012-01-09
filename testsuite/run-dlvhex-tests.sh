@@ -120,6 +120,11 @@ do
       #set -v
       # check error code and output
       read VRETVAL VCOMMAND <$ERRORFILE
+      if test "x$VRETVAL" == "x" -o "x$VCOMMAND" == "x"; then
+          echo "FAIL: $HEXPROGRAM: could not reaad VRETVAL from verification file $ERRORFILE"
+          let failed++
+          continue
+      fi
       #echo "verifying return value '$RETVAL'"
       if [ $VRETVAL -eq $RETVAL ]; then
         #echo "verifying with command '$VCOMMAND'"
