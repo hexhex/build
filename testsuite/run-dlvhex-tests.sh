@@ -57,7 +57,7 @@
 test "x${DLVHEX}" != "x" || { echo "need DLVHEX variable to be set!"; exit -1; }
 test "x${TOP_SRCDIR}" != "x" || { echo "need TOP_SRCDIR variable to be set!"; exit -1; }
 test "x${EXAMPLESDIR}" != "x" || { echo "need EXAMPLESDIR variable to be set!"; exit -1; }
-test "x${TESTDIR}" != "x" -a "x${TESTS}" != "x" || { echo "need TESTDIR variable to be set!"; exit -1; }
+test "x${TESTDIR}" != "x" -o "x${TESTS}" != "x" || { echo "need TESTDIR variable to be set!"; exit -1; }
 if test "x${OUTDIR}" == "x"; then
    OUTDIR=${TESTDIR}
 fi
@@ -74,7 +74,7 @@ ntests=0
 echo "============ dlvhex tests start ============"
 echo "(executing in directory " $(pwd) ")"
 
-if test "x${TESTS}" == "x";
+if test "x${TESTS}" == "x"; then
   TESTS=$(find ${TESTDIR} -name '*.test' -type f)
 fi
 for t in ${TESTS};
