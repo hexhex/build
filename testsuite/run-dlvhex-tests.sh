@@ -8,6 +8,7 @@
 # DLVHEX (binary to use as dlvhex, may include commandline parameters)
 # EXAMPLESDIR (directory where hex input files are located)
 # TESTDIR (directory where .test files are located)
+# TESTS (.test files to use)
 # OUTDIR (directory where .out/.stdout/.stderr files are located)
 #
 # this script looks for files called "*.test" in $TESTDIR
@@ -56,10 +57,11 @@
 test "x${DLVHEX}" != "x" || { echo "need DLVHEX variable to be set!"; exit -1; }
 test "x${TOP_SRCDIR}" != "x" || { echo "need TOP_SRCDIR variable to be set!"; exit -1; }
 test "x${EXAMPLESDIR}" != "x" || { echo "need EXAMPLESDIR variable to be set!"; exit -1; }
-test "x${TESTDIR}" != "x" || { echo "need TESTDIR variable to be set!"; exit -1; }
+test "x${TESTDIR}" != "x" -a "x${TESTS}" != "x" || { echo "need TESTDIR variable to be set!"; exit -1; }
 if test "x${OUTDIR}" == "x"; then
    OUTDIR=${TESTDIR}
 fi
+test "x${TESTDIR}" != "x" && echo "TESTDIR is deprecated, please use OUTDIR and TESTS variables"
 
 MKTEMP="mktemp -t tmp.XXXXXXXXXX"
 TMPFILE=$($MKTEMP) # global temp. file for answer sets
@@ -72,7 +74,10 @@ ntests=0
 echo "============ dlvhex tests start ============"
 echo "(executing in directory " $(pwd) ")"
 
-for t in $(find ${TESTDIR} -name '*.test' -type f)
+if test "x${TESTS}" == "x";
+  TESTS=$(find ${TESTDIR} -name '*.test' -type f)
+fi
+for t in ${TESTS};
 do
   # "read" assigns first word to first variable,
   # second word to second variable,
