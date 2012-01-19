@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 
 # call with list of files where the #includes should be fixed as follows:
-# * if an include is '#include "dlvhex/<foo>.h"'
-#   it is changed to '#include "dlvhex/<foo>.hpp"'
+# * if an include is '#include "dlvhex2/<foo>.hpp"'
+#   it is changed to '#include "dlvhex2/<foo>.h"'
 
 import sys
 import re
@@ -25,16 +25,42 @@ def fixIncludeHelper(matchobj):
   gr2 = matchobj.group(2)
   #dbg("fixincludehelper got '%s'" % (fullstr,))
   #dbg("fixincludehelper got gr '%s' '%s'" % (gr1,gr2))
-  return gr1 + "hpp" + gr2
+  return gr1 + "h" + gr2
 
-pattern = re.compile(r'''
+include1regex = r'''
   # verbose regex
   ^( # start of line
   \s* # whitespace
-  \#include\s*\"dlvhex\/.*\.)h(\" # target include directive
+  \#include\s*\"dlvhex2\/.*\.)hpp(\" # target include directive
   \s* # whitespace
   )$ # end of line
-  ''', re.VERBOSE | re.MULTILINE)
+  '''
+include2regex = r'''
+  # verbose regex
+  ^( # start of line
+  \s* # whitespace
+  \#include\s*\".*\.)hpp(\" # target include directive
+  \s* # whitespace
+  )$ # end of line
+  '''
+include3regex = r'''
+  # verbose regex
+  ^( # start of line
+  \s* # whitespace
+  \#include\s*<dlvhex2\/.*\.)hpp(> # target include directive
+  \s* # whitespace
+  )$ # end of line
+  '''
+doxyfileregex = r'''
+  # verbose regex
+  (@file # doxygen comment
+  [^\r\n]+ # whitespace
+  \.)hpp( # target include directive
+  \s* # whitespace
+  )$ # end of line
+  '''
+useregex = doxyfileregex
+pattern = re.compile(useregex, re.VERBOSE | re.MULTILINE)
 #dbg(pattern.pattern)
 #dbg(pattern.findall("bar \n#include \"dlvhex/foo.h\"\n baz"))
 
