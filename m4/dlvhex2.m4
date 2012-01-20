@@ -24,16 +24,16 @@
 # Original sources can be found in SVN of the SourceForge project of dlvhex
 # http://sourceforge.net/projects/dlvhex/
 
-# DLVHEX2_REQUIRE([VERSION])
+# DLVHEX_REQUIRE([VERSION])
 # -----------------------------------------------
-# Look for dlvhex2.  Version must be a literal of the form "X.Y.Z".
+# Look for dlvhex.  Version must be a literal of the form "X.Y.Z".
 # Provides and uses configure argument --with-dlvhex2=<directory>
 # uses pkg-config
 # defines DLVHEX_USERPLUGINDIR (substituted in ".in" files)
 # defines DLVHEX_SYSPLUGINDIR (substituted in ".in" files)
 # defines DLVHEX_BINDIR (substituted in ".in" files)
-# If dlvhex2 cannot be found, aborts with an error message.
-AC_DEFUN([DLVHEX2_REQUIRE],dnl
+# If dlvhex cannot be found, aborts with an error message.
+AC_DEFUN([DLVHEX_REQUIRE],dnl
 [AC_ARG_WITH([dlvhex2],[dnl
 AS_HELP_STRING([--with-dlvhex2=DIR],dnl
 [prefix of where you installed dlvhex2 >= $1])])
@@ -59,13 +59,13 @@ AC_CHECK_HEADER([dlvhex2/OnlineModelBuilder.h],,dnl
 CPPFLAGS="$SAFE_CPPFLAGS"
 ])
 
-# DLVHEX2_DEFINE_VERSION([PREFIX],[VERSION])
+# DLVHEX_DEFINE_VERSION([PREFIX],[VERSION])
 # -----------------------------------------------
 # VERSION must be a literal of the form "X.Y.Z".
 # defines <PREFIX>_VERSION, <PREFIX>_VERSION_MAJOR,
 # <PREFIX>_VERSION_MINOR, <PREFIX>_VERSION_MICRO
 # (these are substituted in .in files and in config.h)
-AC_DEFUN([DLVHEX2_DEFINE_VERSION],dnl
+AC_DEFUN([DLVHEX_DEFINE_VERSION],dnl
 [pushdef([NAME],[$1])
 NAME[_VERSION]="$2"
 NAME[_VERSION_MAJOR]=`echo "$2" |sed "s,^\([[0-9]]*\).\([[0-9]]*\).\([[0-9]]*\),\1,"`
