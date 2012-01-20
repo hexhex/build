@@ -58,3 +58,26 @@ AC_CHECK_HEADER([dlvhex2/OnlineModelBuilder.h],,dnl
 [AC_MSG_ERROR([Cannot find dlvhex2 headers!])])
 CPPFLAGS="$SAFE_CPPFLAGS"
 ])
+
+# DLVHEX2_DEFINE_VERSION([PREFIX],[VERSION])
+# -----------------------------------------------
+# VERSION must be a literal of the form "X.Y.Z".
+# defines <PREFIX>_VERSION, <PREFIX>_VERSION_MAJOR,
+# <PREFIX>_VERSION_MINOR, <PREFIX>_VERSION_MICRO
+# (these are substituted in .in files and in config.h)
+AC_DEFUN([DLVHEX2_DEFINE_VERSION],dnl
+[pushdef([NAME],[$1])
+NAME[_VERSION]="$2"
+NAME[_VERSION_MAJOR]=`echo "$2" |sed "s,^\([[0-9]]*\).\([[0-9]]*\).\([[0-9]]*\),\1,"`
+NAME[_VERSION_MINOR]=`echo "$2" |sed "s,^\([[0-9]]*\).\([[0-9]]*\).\([[0-9]]*\),\2,"`
+NAME[_VERSION_MICRO]=`echo "$2" |sed "s,^\([[0-9]]*\).\([[0-9]]*\).\([[0-9]]*\),\3,"`
+AC_SUBST(NAME[_VERSION])
+AC_SUBST(NAME[_VERSION_MAJOR])
+AC_SUBST(NAME[_VERSION_MINOR])
+AC_SUBST(NAME[_VERSION_MICRO])
+AC_DEFINE_UNQUOTED(NAME[_VERSION],[$]NAME[_VERSION],[Version number of ]NAME)
+AC_DEFINE_UNQUOTED(NAME[_VERSION_MAJOR],[$]NAME[_VERSION_MAJOR],[Major version number of ]NAME)
+AC_DEFINE_UNQUOTED(NAME[_VERSION_MINOR],[$]NAME[_VERSION_MINOR],[Minor version number of ]NAME)
+AC_DEFINE_UNQUOTED(NAME[_VERSION_MICRO],[$]NAME[_VERSION_MICRO],[Micro version number of ]NAME)
+popdef([NAME])
+])
