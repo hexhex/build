@@ -1,3 +1,8 @@
+2012-01-21  Peter Schueller  <ps@kr.tuwien.ac.at>
+
+	* m4/dlvhex.m4: Autoconf m4 macros for dlvhex (these are mainly
+	useful for plugins, but also come in handy for configuring DLVHEX).
+
 2011-11-22  Peter Schueller  <ps@kr.tuwien.ac.at>
 
 	* testsuite/run-dlvhex-tests.sh: Ignore testcases in
