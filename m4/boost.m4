@@ -403,15 +403,7 @@ dnl generated only once above (before we start the for loops).
       LDFLAGS=$boost_save_LDFLAGS
       LIBS=$boost_save_LIBS
       if test x"$Boost_lib" = xyes; then
-        # Because Boost is often installed in non-standard locations we want to
-        # hardcode the path to the library (with rpath).  Here we assume that
-        # Libtool's macro was already invoked so we can steal its variable
-        # hardcode_libdir_flag_spec in order to get the right flags for ld.
-        boost_save_libdir=$libdir
-        libdir=$boost_ldpath
-        eval boost_rpath=\"$hardcode_libdir_flag_spec\"
-        libdir=$boost_save_libdir
-        Boost_lib_LDFLAGS="-L$boost_ldpath $boost_rpath"
+        Boost_lib_LDFLAGS="-L$boost_ldpath -Wl,-R$boost_ldpath"
         Boost_lib_LDPATH="$boost_ldpath"
         break 6
       else
@@ -596,6 +588,29 @@ BOOST_DEFUN([Lambda],
 [BOOST_FIND_HEADER([boost/lambda/lambda.hpp])])
 
 
+# BOOST_LOG([PREFERRED-RT-OPT])
+# -----------------------------
+# Look for Boost.Log For the documentation of PREFERRED-RT-OPT, see the
+# documentation of BOOST_FIND_LIB above.
+BOOST_DEFUN([Log],
+[BOOST_FIND_LIB([log], [$1],
+    [boost/log/core/core.hpp],
+    [boost::log::attribute a; a.get_value();])
+])# BOOST_LOG
+
+
+# BOOST_LOG_SETUP([PREFERRED-RT-OPT])
+# -----------------------------------
+# Look for Boost.Log For the documentation of PREFERRED-RT-OPT, see the
+# documentation of BOOST_FIND_LIB above.
+BOOST_DEFUN([Log_Setup],
+[AC_REQUIRE([BOOST_LOG])dnl
+BOOST_FIND_LIB([log_setup], [$1],
+    [boost/log/utility/init/from_settings.hpp],
+    [boost::log::basic_settings<char> bs; bs.empty();])
+])# BOOST_LOG_SETUP
+
+
 # BOOST_MATH()
 # ------------
 # Look for Boost.Math
@@ -719,7 +734,7 @@ BOOST_DEFUN([Serialization],
                 [boost/archive/text_oarchive.hpp],
                 [std::ostream* o = 0; // Cheap way to get an ostream...
                 boost::archive::text_oarchive t(*o);])
-])# BOOST_SIGNALS
+])# BOOST_SERIALIZATION
 
 
 # BOOST_SIGNALS([PREFERRED-RT-OPT])
@@ -878,9 +893,9 @@ AC_REQUIRE([BOOST_DATE_TIME])dnl
 boost_wave_save_LIBS=$LIBS
 boost_wave_save_LDFLAGS=$LDFLAGS
 m4_pattern_allow([^BOOST_((FILE)?SYSTEM|DATE_TIME|THREAD)_(LIBS|LDFLAGS)$])dnl
-LIBS="$LIBS $BOOST_SYSTEM_LIBS $BOOST_FILESYSTEM_LIBS $BOOST_DATE_TIME_LIBS\
+LIBS="$LIBS $BOOST_SYSTEM_LIBS $BOOST_FILESYSTEM_LIBS $BOOST_DATE_TIME_LIBS \
 $BOOST_THREAD_LIBS"
-LDFLAGS="$LDFLAGS $BOOST_SYSTEM_LDFLAGS $BOOST_FILESYSTEM_LDFLAGS\
+LDFLAGS="$LDFLAGS $BOOST_SYSTEM_LDFLAGS $BOOST_FILESYSTEM_LDFLAGS \
 $BOOST_DATE_TIME_LDFLAGS $BOOST_THREAD_LDFLAGS"
 BOOST_FIND_LIB([wave], [$1],
                 [boost/wave.hpp],
