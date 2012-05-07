@@ -7,7 +7,7 @@
 # TOP_SRCDIR (as in automake)
 # DLVHEX (binary to use as dlvhex, may include commandline parameters)
 # EXAMPLESDIR (directory where hex input files are located)
-# TESTDIR (directory where .test files are located)
+# TESTDIR (deprecated, directory where .test files are located)
 # TESTS (.test files to use)
 # OUTDIR (directory where .out/.stdout/.stderr files are located)
 #
