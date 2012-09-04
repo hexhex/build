@@ -49,5 +49,15 @@ if [ ! -x "$PC" ]; then
     exit 1
 fi
 
+if [ -e bootstrap-extra.sh ]; then
+  if [ -x bootstrap-extra.sh ]; then
+    echo "executing bootstrap-extra.sh as it was found and is executable"
+    ./bootstrap-extra.sh || { echo "error executing bootstrap-extra.sh" ; exit 1; }
+  else
+    echo "please remove bootstrap-extra.sh or make it executable"
+    exit 1
+  fi
+fi
+
 # copy libltdl and rebuild autotool files
 autoreconf -f -i -W all

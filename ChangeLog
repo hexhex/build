@@ -1,3 +1,7 @@
+2012-09-04  Peter Schueller  <schueller.p@gmail.com>
+
+	* bootstrap.sh: Possibility for executing additional bootstrapping.
+
 2012-01-21  Peter Schueller  <ps@kr.tuwien.ac.at>
 
 	* m4/dlvhex.m4: Autoconf m4 macros for dlvhex (these are mainly
