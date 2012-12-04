@@ -5,20 +5,22 @@ This directory contains basic files for building dlvhex and plugins.
 
 To use this in your dlvhex branch or plugin, invoke
 
- $ cd /path/to/your/svn/branch/
- $ svn propedit svn:externals .
-
-and add the following line into your editor:
-
-^/dlvhex-build/trunk dlvhex-common
+ $ cd /path/to/your/git/repository/
+ $ git submodule add https://github.com/hexhex/build.git dlvhex-common
 
 Commit using
 
- $ svn ci -m "Use dlvhex-build."
+ $ git commit -m "Use build.git submodule."
 
-and update your working directory as usual:
+You can update other repositories that do not contain the submodules as
+follows:
 
- $ svn up
+ $ git submodule init
+ $ git submodule update
+
+or clone fresh copies and init the submodule automatically:
+
+ $ git clone --recursive https://github.com/hexhex/yourthing.git
 
 Then setup symbolic links to the externals in dlvhex-common
 
@@ -26,17 +28,13 @@ Then setup symbolic links to the externals in dlvhex-common
  $ ln -s dlvhex-common/doxygen.am .
  $ ln -s dlvhex-common/doxygen.cfg .
  $ ln -s ../dlvhex-common/m4/boost.m4 ./m4
+ $ ln -s ../dlvhex-common/m4/dlvhex.m4 ./m4
  $ ln -s ../dlvhex-common/m4/doxygen.m4 ./m4
  $ ln -s ../dlvhex-common/testsuite/answerset_compare.py ./testsuite
  $ ln -s ../dlvhex-common/testsuite/run-dlvhex-tests.sh ./testsuite
 
-and add them to SVN
+and add them to your git repository:
 
- $ svn add bootstrap.sh doxygen.{am,cfg} m4/{boost,doxygen}.m4 testsuite/{answerset_compare.py,run-dlvhex-tests.sh}
- $ svn ci -m "Setup symbolic links to dlvhex-common."
-
-and run
-
- $ svn up
-
-again.
+ $ git add bootstrap.sh doxygen.{am,cfg} m4/{boost,dlvhex,doxygen}.m4 testsuite/{answerset_compare.py,run-dlvhex-tests.sh}
+ $ git commit -m "Setup symbolic links to dlvhex-common."
+ $ git push --all
