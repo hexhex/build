@@ -73,6 +73,7 @@ ntests=0
 
 echo "============ dlvhex tests start ============"
 echo "(executing in directory " $(pwd) ")"
+echo "DLVHEX=${DLVHEX/!/\\!}"
 
 if test "x${TESTS}" == "x"; then
   TESTS=$(find ${TESTDIR} -name '*.test' -type f)
@@ -143,12 +144,12 @@ do
         if bash -c "cat $VTMPFILE |$VCOMMAND"; then
           echo "PASS: $HEXPROGRAM $ADDPARM (special testcase)"
         else
-          echo "FAIL: $DLVHEX $ADDPARM $HEXPROGRAM (output not verified by $VCOMMAND)"
+          echo "FAIL: ${DLVHEX/!/\\!} $ADDPARM $HEXPROGRAM (output not verified by $VCOMMAND)"
           cat $VTMPFILE
           let failed++
         fi
       else
-        echo "FAIL: $DLVHEX $ADDPARM $HEXPROGRAM (return value $RETVAL not equal reference value $VRETVAL)"
+        echo "FAIL: ${DLVHEX/!/\\!} $ADDPARM $HEXPROGRAM (return value $RETVAL not equal reference value $VRETVAL)"
         cat $ETMPFILE
         let failed++
       fi
@@ -177,15 +178,15 @@ do
           if $TOP_SRCDIR/testsuite/answerset_compare.py $TMPFILE $ANSWERSETSFILE; then
               echo "PASS: $HEXPROGRAM $ADDPARM"
           else
-              echo "FAIL: $DLVHEX $ADDPARM $HEXPROGRAM (answersets differ)"
+              echo "FAIL: ${DLVHEX/!/\\!} $ADDPARM $HEXPROGRAM (answersets differ)"
               let failed++
           fi
         else
-          echo "FAIL: $DLVHEX $ADDPARM $HEXPROGRAM (abnormal termination)"
+          echo "FAIL: ${DLVHEX/!/\\!} $ADDPARM $HEXPROGRAM (abnormal termination)"
           let failed++
         fi
       else
-        echo "FAIL: $DLVHEX $ADDPARM $HEXPROGRAM: type of testcase must be '.out', '.stdout', or '.stderr', got '$VERIFICATIONEXT'"
+        echo "FAIL: ${DLVHEX/!/\\!} $ADDPARM $HEXPROGRAM: type of testcase must be '.out', '.stdout', or '.stderr', got '$VERIFICATIONEXT'"
         let failed++
         continue
       fi
