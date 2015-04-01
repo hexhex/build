@@ -38,7 +38,7 @@ AC_DEFUN([DLVHEX_REQUIRE],dnl
 AS_HELP_STRING([--with-dlvhex2=DIR],dnl
 [prefix of where you installed dlvhex2 >= $1])])
 if test "x$with_dlvhex2" != "x"; then
-  export PKG_CONFIG_PATH="${with_dlvhex2}lib/pkgconfig/"
+  export PKG_CONFIG_PATH="${with_dlvhex2}/lib/pkgconfig/"
 AC_SUBST([DISTCHECK_CONFIGURE_FLAGS],dnl
 ["$DISTCHECK_CONFIGURE_FLAGS --with-dlvhex2=${with_dlvhex2}"])dnl
 fi
