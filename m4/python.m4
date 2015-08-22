@@ -87,7 +87,7 @@ AC_MSG_RESULT([  results of the Python check:])
 AC_MSG_RESULT([    Binary:      $ax_python_bin])
 AC_MSG_RESULT([    Library:     $ax_python_lib])
 AC_MSG_RESULT([    Include Dir: $ax_python_header])
-AC_MSG_RESULT([    (in case of problems set PYTHON_BIN to the python binary of the installed version)])
+AC_MSG_RESULT([    (in case of problems set PYTHON_BIN to the name of the python binary, e.g., PYTHON_BIN=python2.7 ./configure ...)])
 
 if test x$ax_python_header != xno; then
   PYTHON_INCLUDE_DIR=$ax_python_header
